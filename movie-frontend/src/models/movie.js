@@ -1,10 +1,11 @@
-class Movie{
+class Movie {
 
 static all = []
 
 constructor(data){
     this.data = data
     this.constructor.all.push(this)
+    console.log(this)
 }
 
 static getMovies = () => {
@@ -50,13 +51,31 @@ static getMovies = () => {
  
   renderCard = () => {
     const { title, image, overview, release_date, rating, id} = this.data
-    document.getElementById("house-container").innerHTML += `
+    document.getElementById("movie-container").innerHTML += `
     <div class="movie-card" data-id=${id}>
       <img src=${image} alt=${title}/>
       <p class="title">${title}</p>
       <p>${overview}}</p>
       <p>${release_date}</p>
       <p>${rating}</p>
+      <button class="delete-button" data-id=${id}> Delete Movie</button>
     </div>`
+  }
+
+  static handleSubmit = (e) => {
+    e.preventDefault()
+    const newMovie = {
+      title: e.target.title.value,
+      image: e.target.image.value,
+      overview: e.target.overview.value,
+      release_date: e.target.release_date.value,
+      rating: e.target.rating.value,
+      
+    }
+    api.createMovie(newMovie).then(movie => {
+      new Movie(movie).renderCard()
+    })
+    modal.close()
+    e.target.reset()
   }
 }
