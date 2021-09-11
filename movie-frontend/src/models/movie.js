@@ -49,7 +49,7 @@ static getMovies = () => {
      </div>
      <button id="goBack">Go Back</button>
      `
-     document.getElementById("goBack").addEventListener("click", renderIndex())
+     document.getElementById("goBack").addEventListener("click", Movie.renderIndex)
    }
 
   static openMovieForm = () => {
