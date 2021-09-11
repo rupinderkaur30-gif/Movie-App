@@ -27,6 +27,30 @@ static getMovies = () => {
     this.all.forEach(movie => movie.renderCard())
     movieContainer.addEventListener("click", this.handleIndexClick)
   }
+  static find = (id) => this.all.find(movie => movie.data.id == id)
+
+  static handleIndexClick = (e) =>{
+   if (e.target.tagName == 'IMG' || e.target.classList.contains("title")){
+     const id = e.target.closest(".movie-card").dataset.id
+     this.find(id).renderShow()
+    }
+   }
+
+
+   renderShow = () => {
+     const {title, image , overview , release_date , rating } = this.data
+     document.getElementById("main").innerHTML = `
+     <div class ="show">
+     <h1>${title}<h1>
+     <img src ="${image}" alt=${title}/>
+     <p>${overview}</p>
+     <p>${release_date}</p>
+     <p>${rating}</p>
+     </div>
+     <button id="goBack">Go Back</button>
+     `
+     document.getElementById("goBack").addEventListener("click", renderIndex())
+   }
 
   static openMovieForm = () => {
     modal.main.innerHTML = `
@@ -55,10 +79,6 @@ static getMovies = () => {
     <div class="movie-card" data-id=${id}>
       <img src=${image} alt=${title}/>
       <p class="title">${title}</p>
-      <p>${overview}}</p>
-      <p>${release_date}</p>
-      <p>${rating}</p>
-      <button class="delete-button" data-id=${id}> Delete Movie</button>
     </div>`
   }
 
