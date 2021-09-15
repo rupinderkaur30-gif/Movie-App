@@ -17,9 +17,26 @@ class ApiService {
     }
 
     destroyMovie = (id) => {
-      return fetch(this.api + "/movies/"+id, {
-          method: 'delete' 
-
+     Movie.all = Movie.all.filter(movie => movie.data.id !== id)
+   
+      return fetch(this.api + "/movies/" + id, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+          method: 'DELETE' 
       })
     }
+
+    updateMovie(movie)  {
+      return fetch(`${this.api}/movies/${movie.id}`, {
+        method: 'PATCH', // or 'PUT'
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(movie)
+      })
+        .then(response => response.json())
+      
+  
+  }
 }

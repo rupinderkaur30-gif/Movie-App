@@ -13,10 +13,17 @@ class MoviesController < ApplicationController
     def destroy
         movie = Movie.find(params[:id])
         movie.destroy
+        render json: {}
+    end
+
+    def update
+        movie = Movie.find(params[:id])
+        movie.update(movie_params)
+        render json: movie
     end
 end
 private
 
 def movie_params
-    params.require(:movie).permit(:title, :image, :overview, :release_date, :rating)
+    params.permit(:title, :image, :overview, :release_date, :rating)
 end

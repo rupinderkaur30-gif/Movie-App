@@ -38,20 +38,32 @@ static getMovies = () => {
 
 
    renderShow = () => {
-     const {title, image , overview , release_date , rating } = this.data
+     const {title, image , overview , release_date , rating , id} = this.data
      document.getElementById("main").innerHTML = `
-     <div class ="show">
+     <div class ="show" >
      <h1>${title}<h1>
      <img src ="${image}" alt=${title}/>
      <p>${overview}</p>
      <p>${release_date}</p>
      <p>${rating}</p>
      </div>
-     <button id="goBack">Go Back</button>
+     <button id="goBack">Go Back</button><br>
+     
+     <button id="deleteButton">Delete Button</button>
+     <button id="editButton">Edit Button</button>
+
      `
      document.getElementById("goBack").addEventListener("click", Movie.renderIndex)
-   }
+     document.getElementById("deleteButton").addEventListener("click", () => {
+      api.destroyMovie(id)
+      Movie.all = Movie.all.filter(movie => movie.data.id !== id)
+      Movie.renderIndex()
+     })
+     document.getElementById("editButton").addEventListener("click", () => {
+       Movie.openMovieForm()
+     })
 
+    }
   static openMovieForm = () => {
     modal.main.innerHTML = `
     <h1>Add Your Movie</h1>
