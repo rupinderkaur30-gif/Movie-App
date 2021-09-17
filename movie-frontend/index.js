@@ -1,23 +1,34 @@
 const API_KEY = '09e6a620ac7883cad951562880764439';
 const api = new ApiService("http://localhost:3000")
-const url = "https://api.themoviedb.org/3/search/movie?api_key=09e6a620ac7883cad951562880764439&query=furious"
-const buttonElement = document.querySelector("#search")
-const inputElement = document.querySelector("#inputValue")
+const inputElement = document.querySelector("#search")
 const modal = new Modal()
 Movie.getMovies()
 
-buttonElement.onclick = function(e) {
-    e.preventDefault();
-    const value = inputElement.value;
+inputElement.onkeyup = function(e) {
+    const value = e.target.value;
+    const movies =  Movie.all.filter(movie => movie.data.title.toLowerCase().includes(value.toLowerCase()))
+    Movie.searchResult(movies)
+    
+}
 
-    fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-        console.log('Data: ', data);
+document.querySelector("#btn").addEventListener("click", openUsernameForm)
 
-    })
-    .catch((error) => {
-        console.log('Error: ', error);
-    });
-    console.log('Value: ', value);
+function openUsernameForm() {
+     modal.main.innerHTML  = `
+     <form>
+     <label for="username">Username:</label><br>
+     <input type="text" id="username" name="username">
+     <input type="submit" value="Submit">
+   </form>
+     `
+     modal.main.querySelector("form").addEventListener("submit", handleUsernameSubmit)
+  modal.open()
+}
+
+function handleUsernameSubmit(e){
+    e.preventDefault()
+    document.getElementById("main").innerHTML = ""
+    api.findOrCreateUser(e.target.username.value).then(userData => {
+      user = userData
+})
 }

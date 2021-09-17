@@ -27,6 +27,19 @@ static getMovies = () => {
     this.all.forEach(movie => movie.renderCard())
     movieContainer.addEventListener("click", this.handleIndexClick)
   }
+
+  static searchResult = (movies) => {
+    const main = document.getElementById("main")
+    main.innerHTML = ""
+    const movieContainer = document.createElement("div")
+    movieContainer.id = "movie-container"
+    const addMovie = document.createElement("button")
+    addMovie.innerText = "List a New Movie"
+    addMovie.addEventListener("click", this.openMovieForm)
+    main.append(movieContainer, addMovie)
+    movies.forEach(movie => movie.renderCard())
+    movieContainer.addEventListener("click", this.handleIndexClick)
+  }
   static find = (id) => this.all.find(movie => movie.data.id == id)
 
   static handleIndexClick = (e) =>{
@@ -60,10 +73,52 @@ static getMovies = () => {
       Movie.renderIndex()
      })
      document.getElementById("editButton").addEventListener("click", () => {
-       Movie.openMovieForm()
+       Movie.openMovieEditForm(this)
      })
+ }
 
+ static openMovieEditForm = (movie) => {
+  modal.main.innerHTML = `
+  <h1>Edit Your Movie</h1>
+  <form>
+    <input type="hidden" name="id" value="${movie.data.id}">
+    <label for="title">Title:</label><br>
+    <input type="text" name="title" value="${movie.data.title}"> <br>
+    <label for"image">Image:</label><br>
+    <input type="text" name="image" value="${movie.data.image}"><br>
+    <label for="overview">Overview:</label><br>
+    <input type="text" name="overview" value="${movie.data.overview}"><br>
+    <label for="release_date">Release_date:</label><br>
+    <input type="date" name="release_date" value="${movie.data.release_date}"><br>
+    <label for="rating">Rating:</label><br>
+    <input type="number" name="rating" value="${movie.data.rating}"><br>
+    <input type="submit" value="Update movie"><br>
+  </form>
+  `
+   modal.main.querySelector("form").addEventListener("submit", this.updateMovie)
+  modal.open()
+}
+
+  static updateMovie = (e) => {
+    e.preventDefault()
+    const updatedMovie = {
+      id: e.target.id.value,
+      title: e.target.title.value,
+      image: e.target.image.value,
+      overview: e.target.overview.value,
+      release_date: e.target.release_date.value,
+      rating: e.target.rating.value,
+      
     }
+    api.updateMovie(updatedMovie).then(movie => {
+      Movie.all[Movie.all.findIndex(m => m.data.id === movie.id )].data =  movie
+      const movieObj = Movie.find(movie.id)
+      movieObj.renderShow()
+    })
+    modal.close()
+    e.target.reset()
+  }
+
   static openMovieForm = () => {
     modal.main.innerHTML = `
     <h1>Add Your Movie</h1>
@@ -74,8 +129,8 @@ static getMovies = () => {
       <input type="text" name="image"><br>
       <label for="overview">Overview:</label><br>
       <input type="text" name="overview"><br>
-      <label for="release_year">Release_date:</label><br>
-      <input type="number" name="release_date"><br>
+      <label for="release_date">Release_date:</label><br>
+      <input type="date" name="release_date"><br>
       <label for="rating">Rating:</label><br>
       <input type="number" name="rating"><br>
       <input type="submit" value="Add movie"><br>
