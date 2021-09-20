@@ -25,5 +25,5 @@ end
 private
 
 def movie_params
-    params.permit(:title, :image, :overview, :release_date, :rating)
+    params.permit(:title, :image, :overview, :release_date, :rating, :user_id)
 end

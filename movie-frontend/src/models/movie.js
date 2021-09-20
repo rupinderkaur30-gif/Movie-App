@@ -4,12 +4,14 @@ static all = []
 
 constructor(data){
     this.data = data
+    this.reviews = this.data.reviews.map(review => new Review(review, this))
     this.constructor.all.push(this)
-    console.log(this)
+
 }
 
 static getMovies = () => {
     api.getMovies().then(movies => {
+      Movie.all = []
       movies.forEach(movie => new Movie(movie))
       this.renderIndex()
     })
@@ -51,7 +53,7 @@ static getMovies = () => {
 
 
    renderShow = () => {
-     const {title, image , overview , release_date , rating , id} = this.data
+     const {title, image , overview , release_date , rating , reviews, id} = this.data
      document.getElementById("main").innerHTML = `
      <div class ="show" >
      <h1>${title}<h1>
@@ -59,14 +61,17 @@ static getMovies = () => {
      <p>${overview}</p>
      <p>${release_date}</p>
      <p>${rating}</p>
+     <div class="reviewsContainer">
+     </div>
      </div>
      <button id="goBack">Go Back</button><br>
-     
+     <button id="createReviewButton" data-movie-id="${id}">Create Review</button>
      <button id="deleteButton">Delete Button</button>
      <button id="editButton">Edit Button</button>
 
      `
      document.getElementById("goBack").addEventListener("click", Movie.renderIndex)
+    
      document.getElementById("deleteButton").addEventListener("click", () => {
       api.destroyMovie(id)
       Movie.all = Movie.all.filter(movie => movie.data.id !== id)
@@ -75,6 +80,9 @@ static getMovies = () => {
      document.getElementById("editButton").addEventListener("click", () => {
        Movie.openMovieEditForm(this)
      })
+
+     document.getElementById("createReviewButton").addEventListener("click", Review.openReviewForm)
+     reviews.forEach(review => new Review(review).render())
  }
 
  static openMovieEditForm = (movie) => {

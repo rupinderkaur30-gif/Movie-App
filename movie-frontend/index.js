@@ -1,8 +1,9 @@
-const API_KEY = '09e6a620ac7883cad951562880764439';
+
 const api = new ApiService("http://localhost:3000")
 const inputElement = document.querySelector("#search")
 const modal = new Modal()
 Movie.getMovies()
+let user
 
 inputElement.onkeyup = function(e) {
     const value = e.target.value;
@@ -11,7 +12,7 @@ inputElement.onkeyup = function(e) {
     
 }
 
-document.querySelector("#btn").addEventListener("click", openUsernameForm)
+document.querySelector("#log-in").addEventListener("click", openUsernameForm)
 
 function openUsernameForm() {
      modal.main.innerHTML  = `
@@ -27,8 +28,15 @@ function openUsernameForm() {
 
 function handleUsernameSubmit(e){
     e.preventDefault()
-    document.getElementById("main").innerHTML = ""
     api.findOrCreateUser(e.target.username.value).then(userData => {
       user = userData
-})
+      const loginContainer = document.getElementById("log-in")
+      loginContainer.innerHTML = `
+      <p>Hi, Welcome ${user.username}</p>
+      `
+     localStorage.setItem("userId", user.id)
+    })
+    modal.close()
+
 }
+

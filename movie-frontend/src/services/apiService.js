@@ -50,4 +50,16 @@ class ApiService {
     })
     .then(response => response.json())
   }
+
+  createReview = (review) => {
+    return fetch(this.api + "/reviews", {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(review),
+    })
+    .then(response => response.json())
+
+  }
 }

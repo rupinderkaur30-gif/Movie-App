@@ -127,15 +127,26 @@ header form{
  
   }
 
-#btn {
+#log-in {
     width: 6em;
     border: 2px solid rgba(255, 166, 0, 0.459);
     background: #ffe;
     border-radius: 5px;
-    margin-left :450px;
+    margin-left :850px;
     border: 3px solid var(--main-color);
   
     max-width: 350px;
+}
+
+#bt {
+  width: 6em;
+  border: 2px solid rgba(255, 166, 0, 0.459);
+  background: #ffe;
+  border-radius: 5px;
+ 
+  border: 3px solid var(--main-color);
+
+  max-width: 350px;
 }
 b {
     display: block;
