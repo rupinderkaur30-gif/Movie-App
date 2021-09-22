@@ -29,7 +29,7 @@
     .movie-card {
       border: 3px solid var(--main-color);
       border-radius: 1em;
-      max-width: 350px;
+      width: 162px;
     }
 
   /* Add rounded corners to the top left and the top right corner of the image */

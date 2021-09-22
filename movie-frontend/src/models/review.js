@@ -40,8 +40,7 @@ class Review {
         const {content, id , username} = this.data
         document.querySelector(".reviewsContainer").innerHTML += `
          <div class = "card">
-         <p>content: ${content}</p>
-         <p>username: ${username}</p>
+         <p>content: ${content} By ${username} </p>
          </div>
         `
     }

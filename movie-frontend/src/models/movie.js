@@ -54,13 +54,18 @@ static getMovies = () => {
 
    renderShow = () => {
      const {title, image , overview , release_date , rating , reviews, id} = this.data
+     let stars = ""
+     for (let i = 0; i < Math.round(parseInt(rating)); i++) {
+       stars += '⭐'
+     }
+
      document.getElementById("main").innerHTML = `
      <div class ="show" >
      <h1>${title}<h1>
      <img src ="${image}" alt=${title}/>
      <p>${overview}</p>
      <p>${release_date}</p>
-     <p>${rating}</p>
+     <p>${stars}</p>
      <div class="reviewsContainer">
      </div>
      </div>
@@ -153,7 +158,10 @@ static getMovies = () => {
     document.getElementById("movie-container").innerHTML += `
     <div class="movie-card" data-id=${id}>
       <img src=${image} alt=${title}/>
-      <p class="title">${title}</p>
+      <p class="title">
+        <button>♡</button>
+          ${title}
+      </p>
     </div>`
   }
 
