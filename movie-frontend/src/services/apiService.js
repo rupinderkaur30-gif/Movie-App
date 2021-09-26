@@ -62,4 +62,18 @@ class ApiService {
     .then(response => response.json())
 
   }
+
+  toggleFavorite = (e) => {
+    console.log('hi')
+   return fetch(this.api + "/favorites", {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_id: user.id, 
+      movie_id: e.target.dataset.id
+    }),
+  })
+  }
 }

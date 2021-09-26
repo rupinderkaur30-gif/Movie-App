@@ -139,14 +139,14 @@ header form{
 }
 
 #bt {
-  width: 6em;
+  width: 10em;
   border: 2px solid rgba(255, 166, 0, 0.459);
   background: #ffe;
   border-radius: 5px;
  
   border: 3px solid var(--main-color);
 
-  max-width: 350px;
+  max-width: 500px;
 }
 b {
     display: block;
@@ -160,3 +160,30 @@ b:hover {
     color: red;
     background: #eff;
 }
+
+
+button {
+  width: 8em;
+  border: 2px solid rgba(255, 166, 0, 0.459);
+  background: #ffe;
+  border-radius: 5px;
+ 
+  border: 3px solid var(--main-color);
+
+  max-width: 400px;
+
+}
+input {
+  width: 8em;
+  border: 2px solid rgba(255, 166, 0, 0.459);
+  background: #ffe;
+  border-radius: 5px;
+ 
+  border: 3px solid var(--main-color);
+
+  max-width: 400px;
+
+}
+textarea {
+  border: 3px solid var(--main-color);
+ }

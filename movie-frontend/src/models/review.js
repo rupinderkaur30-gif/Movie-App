@@ -14,7 +14,7 @@ class Review {
             <input type="hidden" name="user_id" value="${user.id}">
             <input type="hidden" name="movie_id" value="${e.target.dataset.movieId}">
             <label for="content">Content:</label><br>
-            <textarea name="content"></textarea>
+            <textarea name="content"></textarea><br>
             <input type="submit" value="Create Review"><br>
       </form>
      `
