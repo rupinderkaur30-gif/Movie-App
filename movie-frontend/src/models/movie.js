@@ -158,13 +158,9 @@ static getMovies = () => {
     document.getElementById("movie-container").innerHTML += `
     <div class="movie-card" data-id=${id}>
       <img src=${image} alt=${title}/>
-      <p>
-        <button id="heartButton-${id}" data-id=${id}>♡</button>
         <span class="title">${title}</span>
-      </p>
     </div>`
 
-     document.getElementById(`heartButton-${id}`).addEventListener("click", api.toggleFavorite)
   }
 
   static handleSubmit = (e) => {

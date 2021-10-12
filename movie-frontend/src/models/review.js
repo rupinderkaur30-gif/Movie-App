@@ -44,4 +44,5 @@ class Review {
          </div>
         `
     }
+
 }

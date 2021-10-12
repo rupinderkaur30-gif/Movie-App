@@ -64,7 +64,7 @@ class ApiService {
   }
 
   toggleFavorite = (e) => {
-    console.log('hi')
+  
    return fetch(this.api + "/favorites", {
     method: 'POST', // or 'PUT'
     headers: {
@@ -75,5 +75,6 @@ class ApiService {
       movie_id: e.target.dataset.id
     }),
   })
+  .then(res => res.json())
   }
 }
