@@ -34,6 +34,10 @@ function handleUsernameSubmit(e){
       loginContainer.innerHTML = `
       <p>Hi, Welcome ${user.username}</p>
       `
+      user.favorite_movies.forEach(movie => {
+        const button = document.querySelector(`.heartButton[data-id="${movie.id}"]`)
+        button.textContent = '♥'
+      })
      localStorage.setItem("userId", user.id)
     })
     modal.close()

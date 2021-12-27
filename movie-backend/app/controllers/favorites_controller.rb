@@ -1,16 +1,18 @@
-class FavoriteController < ApplicationController
+class FavoritesController < ApplicationController
 
     def index
-        favorites = Favorite.all
+        user = User.find(params[:user_id])
+        favorites = user.favorite_movies
+        render json: favorites
     end
 
     def create
-        if Favorite.where(favorite_params).exits?
+        if Favorite.where(favorite_params).exists?
             Favorite.where(favorite_params).destroy_all
-            render json: {favorite: false, movie_id: favorite_params(movie_id)}
+            render json: {favorite: false, movie_id: favorite_params[:movie_id]}
         else
            favorite = Favorite.create(favorite_params)
-           render json: {favorite: true, movie_id: favorite_params(movie_id)}
+           render json: {favorite: true, movie_id: favorite_params[:movie_id]}
         end
     end
 
