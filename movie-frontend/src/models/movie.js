@@ -24,16 +24,15 @@ class Movie {
       movieContainer.id = "movie-container"
       const addMovie = document.createElement("button")
       addMovie.innerText = "List a New Movie"
-      const addMovieS = document.createElement("button")
-      addMovieS.innerText = "S Title Movies"
-      addMovieS.addEventListener("click", (e) => {
-        this.all.forEach(movie => movie.renderCard())
+      addMovie.addEventListener("click",  this.openMovieForm)
+      const movieTitleS = document.createElement("button")
+      movieTitleS.innerText = "S title movies"
+      movieTitleS.addEventListener("click", () => {
+  debugger
       })
-      addMovie.addEventListener("click", (e) => {
-        api.getMovies
-      })
+  
       const favoriteList = document.createElement("button")
-      favoriteList.innerText = "List favorites Movies"
+      favoriteList.innerText = "Favorite Movies"
       favoriteList.addEventListener("click", () => {
         document.getElementById("main").innerHTML = ""
         api.getFavorites().then(movies => {
@@ -44,15 +43,17 @@ class Movie {
       movieContainer.addEventListener("click", this.handleIndexClick)
         })
       })
+     
 
-      main.append(movieContainer, addMovie, addMovieS, favoriteList)
+      main.append(movieContainer, addMovie, favoriteList, movieTitleS)
       this.all.forEach(movie => movie.renderCard())
+      
       movieContainer.addEventListener("click", this.handleIndexClick)
       document.querySelectorAll('.heartButton').forEach(elem => elem.addEventListener("click", (e) => {
         api.toggleFavorite(e).then(res => {
           const button = document.querySelector(`.heartButton[data-id="${res.movie_id}"]`)
           if (res.favorite){
-            button.textContent = '♥'}
+            button.textContent = '❤'}
           else {
             button.textContent = '♡'
           }
@@ -68,6 +69,7 @@ class Movie {
       const addMovie = document.createElement("button")
       addMovie.innerText = "List a New Movie"
       addMovie.addEventListener("click", this.openMovieForm)
+      
       main.append(movieContainer, addMovie)
       movies.forEach(movie => movie.renderCard())
       movieContainer.addEventListener("click", this.handleIndexClick)
@@ -143,7 +145,9 @@ class Movie {
   
     static updateMovie = (e) => {
       e.preventDefault()
+       console.log(e.target.title.value)
       const updatedMovie = {
+
         id: e.target.id.value,
         title: e.target.title.value,
         image: e.target.image.value,

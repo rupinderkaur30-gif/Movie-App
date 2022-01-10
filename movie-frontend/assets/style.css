@@ -71,7 +71,7 @@ header form{
 #search{
     width: 230px;
     height: 30px;
-    border: 1px solid black;
+   
     outline: none;
     border-radius: 20px;
     padding-left: 20px;
@@ -128,7 +128,7 @@ header form{
   }
 
 #log-in {
-    width: 6em;
+    width: 8em;
     border: 2px solid rgba(255, 166, 0, 0.459);
     background: #ffe;
     border-radius: 5px;
@@ -163,7 +163,7 @@ b:hover {
 
 
 button {
-  width: 8em;
+  
   border: 2px solid rgba(255, 166, 0, 0.459);
   background: #ffe;
   border-radius: 5px;
@@ -187,3 +187,5 @@ input {
 textarea {
   border: 3px solid var(--main-color);
  }
+
+ 
