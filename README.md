@@ -28,6 +28,11 @@ Movie:
 
  The show page should be wrapped in a div classed show.
 
+# Usage
+In order to start the server for the application, enter the following line in your terminal:
 
+$ rails s
+
+Next, open the file index.html in your browser and enjoy using Quarantine Movies!
 
  
