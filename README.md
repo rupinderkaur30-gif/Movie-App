@@ -4,7 +4,7 @@
 
 Our final models will be:
 
-** User:
+User:
 
 - Name
 
@@ -30,8 +30,8 @@ Movie:
 
 Your html should include this to load the font Creepster:
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+ [] <link rel="preconnect" href="https://fonts.googleapis.com">
+ [] <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ [] <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
  
