@@ -1,5 +1,5 @@
 # Movie-App
-##Let's build Movie App
+#Let's build Movie App
 For this project, I created a Movie app with that user can give review about it and also can add their favourite movies in their movie favorite list.
 
 Our final models will be:
